@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Air</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <div class="grid-y medium-grid-frame">
+      <div class="grid-x grid-padding-x">
+        <div class="large-offset-3 cell headers">
+          <h1>Hot Air: The Cooling of Sound</h1>
+          <h3>By: Connor Killion</h3>
+        </div>
+      </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="auto">
+          <canvas class="visualizer"></canvas>
+        </div>
+      </div>
+
+      <div class="grid-x grid-margin-x">
+        <div class="playback-controls auto large-offset-5">
+          <button class="clear button large record"><i class="fas fa-circle userblue"></i></button>
+          <button class="clear button large disabled reset"><i class="fas fa-fast-backward userblue"></i></button>
+          <button class="clear button large disabled play-pause"><i class="fas fa-play userblue"></i></button>
+          <button class="clear button large disabled download"><i class="fas fa-file-download userblue"></i></button>
+        </div>
+      </div>
+
+
+      <div class="parameters">
+        <form>
+          <div class="grid-x grid-padding-x">
+            <div class="small-12 large-3 medium-6 large-offset-3 cell">
+              <label>Cooling Iterations
+                <input type="number" value="1000">
+              </label>
+            </div>
+            <div class="small-12 medium-6 large-3 cell">
+              <label>Heat Equation Coefficient
+                <input type="number" value="0.5">
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/what-input/dist/what-input.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
