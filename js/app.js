@@ -36,13 +36,12 @@ var recordButton = document.querySelector('.record');
 var playButton = document.querySelector('.play');
 var resetButton = document.querySelector('.reset');
 var saveButton = document.querySelector('.save');
-// var player = document.getElementById('player');
 var totalTime = 0.0;
 var chunks = [];
 var timerInterval = null;
 
 // downloader
-var capturer = new CCapture( { format: 'gif', workersPath: '/js' } );
+var capturer = new CCapture( { format: 'gif', workersPath: 'js/' } );
 
 drawDefaultLine();
 
@@ -146,11 +145,13 @@ resetButton.onclick = function() {
   canvasCtx.stroke();
 
   resetButton.classList.add("disabled");
+  saveButton.classList.add("disabled");
   playButton.classList.remove("disabled");
 }
 
 saveButton.onclick = function() {
   console.log("saving");
+  saveButton.classList.add("disabled");
   capturer.save();
 }
 
@@ -163,7 +164,6 @@ function stopRecording() {
 
   // TODO: remove the .disabled classes from the buttons
   playButton.classList.remove("disabled");
-  saveButton.classList.remove("disabled");
   recordButton.classList.remove("disabled");
 
   iterations = 0;
@@ -223,6 +223,7 @@ function coolAndUpdateGraph() {
     console.log("stopping the capture");
     capturer.stop();
     resetButton.classList.remove("disabled");
+    saveButton.classList.remove("disabled");
   }
 
   let n = audioData.length;
