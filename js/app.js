@@ -80,6 +80,9 @@ function drawDefaultLine() {
 
 // function for starting the recording when record button is pressed
 recordButton.onclick = function() {
+  if (recordButton.classList.contains("disabled")) {
+    return;
+  }
   if (timerInterval !== null) {
     console.log("already recording");
     return;
@@ -102,6 +105,9 @@ recordButton.onclick = function() {
 };
 
 playButton.onclick = function() {
+  if (playButton.classList.contains("disabled")) {
+    return;
+  }
   if (audioData !== [] && audioData !== null
     && audioData !== undefined) {
     capturer.start();
@@ -113,6 +119,10 @@ playButton.onclick = function() {
 resetButton.onclick = function() {
   if (untouchedAudioData === [] || untouchedAudioData === null
     || untouchedAudioData === undefined) {
+    return;
+  }
+
+  if (resetButton.classList.contains("disabled")) {
     return;
   }
 
@@ -150,6 +160,9 @@ resetButton.onclick = function() {
 }
 
 saveButton.onclick = function() {
+  if (saveButton.classList.contains("disabled")) {
+    return;
+  }
   console.log("saving");
   saveButton.classList.add("disabled");
   capturer.save();
