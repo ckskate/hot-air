@@ -1,14 +1,20 @@
-// $(document).foundation();
+// For grading purposes, the code that actually contains the heat diffusion
+// part is entirely contained in the function coolAndUpdateGraph(). I've
+// included more comments in there
 
 // simulation parameters
 var totalRecordingTime = 3000; // ms
 var dataSampleInterval = 250; // ms
 var totalNumberOfSamples = (totalRecordingTime / dataSampleInterval) - 1;
-var analyserFftSize = 2048; // I just pulled this from a mozilla example
+var analyserFftSize = 2048; // I just pulled this from a mozilla example, seems to work
 var iterations = 0;
 // expose the following two parameters to the user
 var iterationCount = 1000;
 var k = 0.5;
+var iterationInput = document.querySelector('.iterations-val');
+iterationInput.value = iterationCount;
+var kInput = document.querySelector('.k-val');
+kInput.value = k;
 
 // visual
 var canvas = document.querySelector('.visualizer');
@@ -113,6 +119,7 @@ playButton.onclick = function() {
     capturer.start();
     coolAndUpdateGraph();
     playButton.classList.add("disabled");
+    recordButton.classList.add("disabled");
   }
 }
 
@@ -125,6 +132,9 @@ resetButton.onclick = function() {
   if (resetButton.classList.contains("disabled")) {
     return;
   }
+
+  iterations = 0;
+  audioData = untouchedAudioData.slice();
 
   var WIDTH = canvas.width;
   var HEIGHT = canvas.height;
@@ -166,6 +176,20 @@ saveButton.onclick = function() {
   console.log("saving");
   saveButton.classList.add("disabled");
   capturer.save();
+}
+
+iterationInput.onchange = function() {
+  val = Math.floor(iterationInput.value);
+  if (val < 10000 && val > 0) {
+    iterationCount = val;
+  }
+}
+
+kInput.onchange = function() {
+  val = kInput.value;
+  if (val > 0.0 && val <= 1.0) {
+    k = val;
+  }
 }
 
 // function for stopping the recording
@@ -237,6 +261,7 @@ function coolAndUpdateGraph() {
     capturer.stop();
     resetButton.classList.remove("disabled");
     saveButton.classList.remove("disabled");
+    recordButton.classList.remove("disabled");
   }
 
   let n = audioData.length;
