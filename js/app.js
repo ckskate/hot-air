@@ -264,6 +264,7 @@ function coolAndUpdateGraph() {
     recordButton.classList.remove("disabled");
   }
 
+  // HERE IS THE COOLING CODE ==================================================
   let n = audioData.length;
 
   // boundary conditions
@@ -276,6 +277,7 @@ function coolAndUpdateGraph() {
     newAudioData[j] = Math.ceil(Math.round(newTerm));
   }
   audioData = newAudioData;
+  // END OF THE COOLING CODE ===================================================
 
   // update visuals
 
